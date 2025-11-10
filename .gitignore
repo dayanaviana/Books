@@ -1,0 +1,75 @@
+.externalNativeBuild
+.cxx
+
+# --- Gradle ---
+.gradle
+.gradle/
+build/
+**/build/
+
+# Local configuration file (sdk path, keystore path)
+local.properties
+/local.properties
+
+# Log/lock files
+*.log
+gradle-app.setting
+gradle-wrapper.jar
+gradle-wrapper.properties
+
+# Gradle caches
+**/.gradle/
+
+# --- Android Studio / IntelliJ IDEA ---
+/.idea
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+
+.idea/*
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/gradle.xml
+.idea/**/assetWizardSettings.xml
+.idea/**/dictionaries
+.idea/**/libraries
+
+
+
+# Android Studio captures
+captures/
+
+# --- Kotlin ---
+*.iml
+*.kts~
+
+# --- OS Files ---
+.DS_Store
+Thumbs.db
+
+# --- Keystores (VERY important!) ---
+*.jks
+*.keystore
+
+# If you keep signing configs as plain files (not recommended)
+signing.properties
+
+# --- NDK / CMake ---
+.obj/
+*.so
+*.o
+
+# --- Jetpack Compose artifacts ---
+compose-metrics/
+compose-reports/
+
+# --- Firebase / Google Services (optional!!) ---
+# Uncomment if you want to ignore google-services.json
+# google-services.json
+
+# --- Misc ---
+*.apk
+*.aab
