@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Livros</string>
     <string name="greeting">Ola</string>
+    <string name="delete">Apagar</string>
 </resources>
