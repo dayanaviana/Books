@@ -1,6 +1,8 @@
 package com.dviana.books.presentation
 
 import androidx.compose.ui.graphics.Color
+import com.dviana.books.presentation.components.BookEvent
+import com.dviana.books.presentation.components.*
 import com.dviana.books.ui.theme.Purple40
 import com.dviana.books.ui.theme.Purple80
 import com.dviana.books.ui.theme.PurpleGrey40
@@ -19,7 +21,6 @@ sealed class BookType(
 data object Fiction: BookType(Purple80, PurpleGrey40)
 data object NonFiction: BookType(Purple40, PurpleGrey80)
 
-
 val books = mutableListOf(
     BookViewModel(
         title = "The Great Gatsby",
@@ -30,7 +31,7 @@ val books = mutableListOf(
     BookViewModel(
         title = "To Kill a Mockingbird",
         author = "Harper Lee",
-        isRead = false,
+        isRead = true,
         bookType = Fiction
     ),
     BookViewModel(
@@ -160,3 +161,12 @@ val books = mutableListOf(
         bookType = Fiction
     )
 )
+
+fun sortBooks(books: List<BookViewModel>, event: BookEvent.Order): List<BookViewModel> {
+    return when(event.order) {
+        SortByAuthor -> books.sortedBy { it.author }
+        SortByFictional -> books.sortedBy { it.bookType == Fiction }
+        SortByRead -> books.sortedBy { it.isRead }
+        SortByTitle -> books.sortedBy { it.title }
+    }
+}

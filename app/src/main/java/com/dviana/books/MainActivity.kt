@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.dviana.books.presentation.ListBooksScreen
+import com.dviana.books.presentation.books
 import com.dviana.books.ui.theme.BooksTheme
 
 class MainActivity : ComponentActivity() {
@@ -47,7 +48,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             BooksTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ListBooksScreen(innerPadding = innerPadding)
+                    ListBooksScreen(books, innerPadding = innerPadding)
                 }
             }
         }

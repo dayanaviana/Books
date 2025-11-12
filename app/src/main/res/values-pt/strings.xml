@@ -2,4 +2,7 @@
     <string name="app_name">Livros</string>
     <string name="greeting">Ola</string>
     <string name="delete">Apagar</string>
+
+    //TODO: Translate
+    <string name="main_heading">MAIN_HEADING</string>
 </resources>
