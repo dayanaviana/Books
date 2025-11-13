@@ -8,7 +8,7 @@ import com.dviana.books.ui.theme.Purple80
 import com.dviana.books.ui.theme.PurpleGrey40
 import com.dviana.books.ui.theme.PurpleGrey80
 
-data class BookViewModel (
+data class BookViewModel(
     val title: String = "",
     val author: String = "",
     val isRead: Boolean = false,
@@ -18,8 +18,9 @@ data class BookViewModel (
 sealed class BookType(
     val backgroundColor: Color, val foregroundColor: Color
 )
-data object Fiction: BookType(Purple80, PurpleGrey40)
-data object NonFiction: BookType(Purple40, PurpleGrey80)
+
+data object Fiction : BookType(Purple80, PurpleGrey40)
+data object NonFiction : BookType(Purple40, PurpleGrey80)
 
 val books = mutableListOf(
     BookViewModel(
@@ -163,7 +164,7 @@ val books = mutableListOf(
 )
 
 fun sortBooks(books: List<BookViewModel>, event: BookEvent.Order): List<BookViewModel> {
-    return when(event.order) {
+    return when (event.order) {
         SortByAuthor -> books.sortedBy { it.author }
         SortByFictional -> books.sortedBy { it.bookType == Fiction }
         SortByRead -> books.sortedBy { it.isRead }

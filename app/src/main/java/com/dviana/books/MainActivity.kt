@@ -7,8 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dviana.books.presentation.ListBooksScreen
-import com.dviana.books.presentation.books
+import com.dviana.books.presentation.ListBooksViewModel
 import com.dviana.books.ui.theme.BooksTheme
 
 class MainActivity : ComponentActivity() {
@@ -48,6 +49,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             BooksTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    val books = viewModel<ListBooksViewModel>()
                     ListBooksScreen(books, innerPadding = innerPadding)
                 }
             }

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -32,9 +33,7 @@ import com.dviana.books.presentation.components.SortOptions
 import com.dviana.books.presentation.components.SortOrder
 
 @Composable
-fun ListBooksScreen(books: List<BookViewModel>, innerPadding: PaddingValues) {
-    //    val localBooks = books.toMutableList()
-    var localBooks by remember { mutableStateOf(sortBooks(books, BookEvent.Order(SortByAuthor))) }
+fun ListBooksScreen(booksVM: ListBooksViewModel, innerPadding: PaddingValues) {
 
     Column(
         modifier = Modifier
@@ -51,15 +50,15 @@ fun ListBooksScreen(books: List<BookViewModel>, innerPadding: PaddingValues) {
             style = TextStyle(fontSize = 32.sp)
         )
 
-         var sortOrder: SortOrder by remember {
-             mutableStateOf(SortByAuthor)
-         }
-        SortOptions(bookOrder = sortOrder, onSortOrderChange = { order ->
-            sortOrder = order
-            localBooks = sortBooks(localBooks, BookEvent.Order(order))
-        })
+        var sortOrder: SortOrder by remember {
+            mutableStateOf(SortByAuthor)
+        }
+//        SortOptions(bookOrder = sortOrder, onSortOrderChange = { order ->
+//            sortOrder = order
+//            booksVM = sortBooks(booksVM, BookEvent.Order(order))
+//        })
 
-//        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         //Book List
         LazyColumn(
@@ -68,16 +67,9 @@ fun ListBooksScreen(books: List<BookViewModel>, innerPadding: PaddingValues) {
                 .border(1.dp, color = Color.Red)
                 .fillMaxSize()
         ) {
-            localBooks.forEach { book ->
-                item {
-                    BookCard(book) {
-//                    onDeleteClick
-                        println("Deleting book ${book.title}")
-//                    localBooks.remove(book)
-                        localBooks = localBooks.filter { it != book }
-                    }
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
+            items(booksVM.books.value) { book ->
+                BookCard(book, onDeleteClick = {})
+
             }
         }
     }
@@ -87,5 +79,5 @@ fun ListBooksScreen(books: List<BookViewModel>, innerPadding: PaddingValues) {
 @Preview(showBackground = true)
 @Composable
 fun ListBooksScreenPreview() {
-    ListBooksScreen(books, innerPadding = PaddingValues())
+    ListBooksScreen(ListBooksViewModel(), innerPadding = PaddingValues())
 }
