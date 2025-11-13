@@ -31,7 +31,10 @@ class ListBooksViewModel : ViewModel() {
                 deleteBook(event.book)
             }
 
-            is BookEvent.Order -> TODO()
+            is BookEvent.Order -> {
+                _sortOrder.value = event.order
+                _books.value = loadBooks(event.order)
+            }
         }
     }
 
