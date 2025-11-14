@@ -1,9 +1,10 @@
-package com.dviana.books.presentation
+package com.dviana.books.presentation.list
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.dviana.books.presentation.BookViewModel
 import com.dviana.books.presentation.components.BookEvent
 import com.dviana.books.presentation.components.SortByAuthor
 import com.dviana.books.presentation.components.SortOrder

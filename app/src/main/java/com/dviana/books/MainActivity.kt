@@ -5,12 +5,17 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.dviana.books.presentation.ListBooksScreen
-import com.dviana.books.presentation.ListBooksViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.dviana.books.presentation.list.ListBooksScreen
+import com.dviana.books.presentation.list.ListBooksViewModel
 import com.dviana.books.ui.theme.BooksTheme
+import com.dviana.books.utils.Screen
 
 class MainActivity : ComponentActivity() {
     override fun onStart() {
@@ -49,8 +54,18 @@ class MainActivity : ComponentActivity() {
         setContent {
             BooksTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    val books = viewModel<ListBooksViewModel>()
-                    ListBooksScreen(books, innerPadding = innerPadding)
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.BookListScreen.route,
+                        modifier = Modifier.padding(innerPadding)
+                    ) {
+                        // Tell NavHost that this is our start destination
+                        composable(route = Screen.BookListScreen.route) {
+                            val books = viewModel<ListBooksViewModel>()
+                            ListBooksScreen(navController, books)
+                        }
+                    }
                 }
             }
         }
